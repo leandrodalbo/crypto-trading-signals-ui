@@ -1,0 +1,37 @@
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #009879;
+  background-color: #dddddd;
+  text-align: left;
+}
+
+.control {
+  display: flex;
+  gap: 0.9rem;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  align-items: center;
+}
+
+.control label select button {
+  margin: 1rem 0.1rem;
+  padding: 1.2rem 0.3rem;
+  text-transform: capitalize;
+  text-decoration: solid;
+}
+
+.control input,
+select {
+  border: 0;
+  background: #05eebf;
+}
+
+.control button {
+  background-color: transparent;
+}
+
+.control p {
+  font-size: 1.5rem;
+}
