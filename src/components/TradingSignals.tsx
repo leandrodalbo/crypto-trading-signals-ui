@@ -2,61 +2,53 @@ import "./tradingsignals.css";
 
 import { Head } from "./head/Head";
 import { Row } from "./row/Row";
-import { BuySell, Signal, Strength } from "../types/types";
-import { useCallback, useState } from "react";
+import { Signal } from "../types/types";
+import { useEffect, useState } from "react";
 import { Controls } from "./controls/Controls";
 
+import GetSignalsService from "../service/GetSignals";
+
 export interface TradingSignalsProps {
-  signalsService: (strength: Strength, buysell: BuySell) => Signal[];
+  signalsService: GetSignalsService;
 }
 
 const TradingSignals = ({ signalsService }: TradingSignalsProps) => {
-  const [rows, setRows] = useState(
-    signalsService(Strength.MEDIUM, BuySell.BUY)
-  );
+  const [rows, setRows] = useState([] as Signal[]);
 
-  const [filteredRows, setFilteredRows] = useState(rows);
+  const refreshSignals = async (
+    timeframe?: string,
+    strength?: string,
+    buysell?: string
+  ) => {
+    const response = await signalsService.signals(timeframe, strength, buysell);
+    setRows(response.data);
+  };
 
-  const filterBySymbol = useCallback(
-    (symbol?: string) => {
-      if (symbol) {
-        setFilteredRows(
-          rows.filter((it: Signal) =>
-            it.symbol.toUpperCase().includes(symbol.toUpperCase())
-          )
-        );
-      } else {
-        setFilteredRows(rows);
-      }
-    },
-    [filteredRows]
-  );
-
-  const refreshSignals = useCallback(
-    (strength: Strength, buysell: BuySell) => {
-      setRows(signalsService(strength, buysell));
-    },
-    [rows]
-  );
+  useEffect(() => {
+    refreshSignals();
+  }, []);
 
   return (
-    <main>
-      <Controls refreshSignals={refreshSignals} symbolFilter={filterBySymbol} />
-      <table id="#table" data-testid="tradingsignals">
-        <thead data-testid="headcomponent">
-          <Head />
-        </thead>
-        <tbody>
-          {filteredRows.map((it: Signal) => (
-            <Row key={it.symbol} signal={it} />
-          ))}
-        </tbody>
-      </table>
-
-      <div className="botom">
+    <>
+      <header data-testid="header">
+        <Controls refreshSignals={refreshSignals} />
+      </header>
+      <main data-testid="main">
+        <table id="#table" data-testid="tradingsignals">
+          <thead>
+            <Head />
+          </thead>
+          <tbody>
+            {rows.map((it: Signal) => (
+              <Row key={it.symbol} signal={it} />
+            ))}
+          </tbody>
+        </table>
+      </main>
+      <footer className="botom" data-testid="footer">
         <a href="#contact">JungleLogic Labs</a>
-      </div>
-    </main>
+      </footer>
+    </>
   );
 };
 

@@ -1,62 +1,83 @@
-import { useCallback, useState } from "react";
 import "./controls.css";
-import { BuySell, Strength } from "../../types/types";
+
+import { useCallback, useEffect, useState } from "react";
+import { BuySell, Strength, TimeFrame } from "../../types/types";
 
 export interface ControlsProps {
-  symbolFilter: (symbol?: string) => void;
-  refreshSignals: (strength: Strength, buysell: BuySell) => void;
+  refreshSignals: (
+    timeframe: string,
+    strength: string,
+    buysell: string
+  ) => void;
 }
 
-export const Controls = ({ symbolFilter, refreshSignals }: ControlsProps) => {
-  const [strength, setStrength] = useState(Strength[Strength.MEDIUM]);
-  const [buysell, setBuySell] = useState(BuySell[BuySell.BUY]);
-  const [symbol, setSymbol] = useState(undefined);
+export const Controls = ({ refreshSignals }: ControlsProps) => {
+  const [timeframe, setTimeframe] = useState(TimeFrame[TimeFrame.D1] as string);
+  const [strength, setStrength] = useState(Strength[Strength.MEDIUM] as string);
+  const [buysell, setBuySell] = useState(BuySell[BuySell.BUY] as string);
+  const [symbol, setSymbol] = useState("");
 
-  const onChangeStrength = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setStrength(event.target.value);
-  };
-  const onChangeBuySell = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    setBuySell(event.target.value);
-
-  const onChangeSymbol = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSymbol(symbol);
-      symbolFilter(event.target.value);
+  const onChangeTimeframe = useCallback(
+    async (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setTimeframe(event.target.value);
+      await refreshSignals(event.target.value, strength, buysell);
     },
-    [symbol]
+    [timeframe, strength, buysell, symbol]
   );
 
-  const onRefreshSignals = useCallback(() => {
-    refreshSignals(
-      strength as unknown as Strength,
-      buysell as unknown as BuySell
-    );
-  }, [strength, buysell]);
+  const onChangeStrength = useCallback(
+    async (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setStrength(event.target.value);
+      await refreshSignals(timeframe, event.target.value, buysell);
+    },
+    [timeframe, strength, buysell, symbol]
+  );
+
+  const onChangeBuySell = useCallback(
+    async (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setBuySell(event.target.value);
+      await refreshSignals(timeframe, strength, event.target.value);
+    },
+    [timeframe, strength, buysell, symbol]
+  );
+
+  const onRefreshSignals = useCallback(async () => {
+    await refreshSignals(timeframe, strength, buysell);
+  }, [timeframe, strength, buysell, symbol]);
 
   return (
     <div className="controls">
-      <div className="control">
-        <label htmlFor="symbol">Symbol:</label>
-        <input
-          name="symbol"
-          id="symbol"
-          type="text"
-          placeholder="Symbol"
-          onChange={onChangeSymbol}
-        />
-      </div>
-
       <div className="control">
         <p>Crypto Trading Signals</p>
       </div>
 
       <div className="control">
+        <label htmlFor="timeframe">Timeframe:</label>
+        <select
+          name="timeframe"
+          id="timeframe"
+          onChange={onChangeTimeframe}
+          defaultValue={timeframe}
+          data-testid="timeframe"
+        >
+          <option value={TimeFrame[TimeFrame.D1] as string} key={TimeFrame.D1}>
+            {TimeFrame[TimeFrame.D1]}
+          </option>
+          <option value={TimeFrame[TimeFrame.H4] as string} key={TimeFrame.H4}>
+            {TimeFrame[TimeFrame.H4]}
+          </option>
+          <option value={TimeFrame[TimeFrame.H1] as string} key={TimeFrame.H1}>
+            {TimeFrame[TimeFrame.H1]}
+          </option>
+        </select>
+
         <label htmlFor="strength">Signal Strength:</label>
         <select
           name="strength"
           id="strength"
           onChange={onChangeStrength}
           defaultValue={strength}
+          data-testid="strength"
         >
           <option
             value={Strength[Strength.MEDIUM] as string}
@@ -73,7 +94,12 @@ export const Controls = ({ symbolFilter, refreshSignals }: ControlsProps) => {
         </select>
 
         <label htmlFor="buysell">Buy/Sell:</label>
-        <select name="buysell" id="buysell" onChange={onChangeBuySell}>
+        <select
+          name="buysell"
+          id="buysell"
+          onChange={onChangeBuySell}
+          data-testid="buysell"
+        >
           <option value={BuySell[BuySell.BUY]} key={BuySell.BUY}>
             {BuySell[BuySell.BUY]}
           </option>
@@ -81,6 +107,7 @@ export const Controls = ({ symbolFilter, refreshSignals }: ControlsProps) => {
             {BuySell[BuySell.SELL]}
           </option>
         </select>
+
         <button onClick={onRefreshSignals}>Refresh</button>
       </div>
     </div>

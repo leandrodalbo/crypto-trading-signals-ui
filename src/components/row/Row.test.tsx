@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Row } from "./Row";
+import { Row, unixToDate } from "./Row";
 
 import { testdata } from "../../../tests/data/testdata";
 
@@ -9,8 +9,8 @@ describe("Table Row Component", () => {
 
     render(<Row signal={signal} />);
     expect(screen.getByTestId("symbol").innerHTML).toBe(signal.symbol);
-    expect(Number(screen.getByTestId("time").innerHTML)).toEqual(
-      signal.signalTime
+    expect(screen.getByTestId("time").innerHTML).toEqual(
+      unixToDate(signal.signalTime)
     );
     expect(screen.getByTestId("ema").innerHTML).toBe(signal.ema);
     expect(screen.getByTestId("sma").innerHTML).toBe(signal.sma);

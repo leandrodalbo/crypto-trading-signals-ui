@@ -4,11 +4,15 @@ export interface RowProps {
   signal: Signal;
 }
 
+export const unixToDate = (unixtime: number) => {
+  return new Date(unixtime * 1000).toLocaleString();
+};
+
 export const Row = ({ signal }: RowProps) => {
   return (
     <tr>
       <td data-testid="symbol">{signal.symbol}</td>
-      <td data-testid="time">{signal.signalTime}</td>
+      <td data-testid="time">{unixToDate(signal.signalTime)}</td>
       <td data-testid="ema">{signal.ema}</td>
       <td data-testid="sma">{signal.sma}</td>
       <td data-testid="macd">{signal.macd}</td>

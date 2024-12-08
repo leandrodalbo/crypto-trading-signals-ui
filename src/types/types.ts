@@ -27,3 +27,9 @@ export enum Strength {
   MEDIUM,
   STRONG,
 }
+
+export enum TimeFrame {
+  H1,
+  H4,
+  D1,
+}

@@ -1,11 +1,16 @@
 import { render, screen } from "@testing-library/react";
 
+import client from "../ApiConf";
 import TradingSignals from "./TradingSignals";
+import GetSignalsService from "../service/GetSignals";
 
 describe("Trading Signals", () => {
-  it("renders the table", () => {
-    render(<TradingSignals />);
-    expect(screen.getByTestId("tradingsignals")).toBeInTheDocument();
-    expect(screen.getByTestId("headcomponent")).toBeInTheDocument();
+  it("will render all sections", () => {
+    const service = new GetSignalsService(client);
+
+    render(<TradingSignals signalsService={service} />);
+    expect(screen.getByTestId("header")).toBeInTheDocument();
+    expect(screen.getByTestId("main")).toBeInTheDocument();
+    expect(screen.getByTestId("footer")).toBeInTheDocument();
   });
 });
