@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Signal } from "../../types/types";
 
 export interface RowProps {
@@ -5,7 +6,7 @@ export interface RowProps {
 }
 
 export const unixToDate = (unixtime: number) => {
-  return new Date(unixtime * 1000).toLocaleString();
+  return moment.unix(unixtime).format("DD-MM-YYYY HH:mm:ss");
 };
 
 export const Row = ({ signal }: RowProps) => {

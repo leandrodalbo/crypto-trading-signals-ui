@@ -37,23 +37,24 @@ table tbody tr:hover {
 
 .botom {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  background-color: #dddddd;
-
-  position: fixed;
+  background: #dddddd;
   bottom: 0;
-  width: 100%;
+  width: 99%;
+  position: fixed;
 }
 
 .botom a {
   float: left;
   display: block;
   text-align: center;
-  padding: 14px 16px;
+  align-items: center;
+  margin-top: 3px;
+  padding: 10px 10px;
   color: #009879;
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   text-transform: capitalize;
 }
