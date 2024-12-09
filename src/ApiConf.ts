@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const API_HOST = "http://localhost:8298";
+export const API_HOST =
+  "http://prod-trading-signals-alb-1104809583.eu-west-2.elb.amazonaws.com";
 
 const axiosClient = axios.create({
   baseURL: API_HOST,
