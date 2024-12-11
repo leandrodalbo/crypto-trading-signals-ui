@@ -1,20 +1,20 @@
 export interface Signal {
   symbol: string;
   signalTime: number;
-  buyStrength: Strength;
-  sellStrength: BuySell;
-  bollingerBands: BuySell;
-  ema: BuySell;
-  sma: BuySell;
-  macd: BuySell;
-  obv: BuySell;
-  rsi: BuySell;
-  rsiDivergence: BuySell;
-  stochastic: BuySell;
-  engulfingCandle: BuySell;
-  lindaMacd: BuySell;
-  turtleSignal: BuySell;
-  hammerAndShootingCandle: BuySell;
+  buyStrength: Strength | string;
+  sellStrength: Strength | string;
+  bollingerBands: BuySell | string;
+  ema: BuySell | string;
+  sma: BuySell | string;
+  macd: BuySell | string;
+  obv: BuySell | string;
+  rsi: BuySell | string;
+  rsiDivergence: BuySell | string;
+  stochastic: BuySell | string;
+  engulfingCandle: BuySell | string;
+  lindaMacd: BuySell | string;
+  turtleSignal: BuySell | string;
+  hammerAndShootingCandle: BuySell | string;
   version: number;
 }
 

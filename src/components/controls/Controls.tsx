@@ -1,6 +1,6 @@
 import "./controls.css";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { BuySell, Strength, TimeFrame } from "../../types/types";
 
 export interface ControlsProps {
@@ -15,14 +15,13 @@ export const Controls = ({ refreshSignals }: ControlsProps) => {
   const [timeframe, setTimeframe] = useState(TimeFrame[TimeFrame.D1] as string);
   const [strength, setStrength] = useState(Strength[Strength.MEDIUM] as string);
   const [buysell, setBuySell] = useState(BuySell[BuySell.BUY] as string);
-  const [symbol, setSymbol] = useState("");
 
   const onChangeTimeframe = useCallback(
     async (event: React.ChangeEvent<HTMLSelectElement>) => {
       setTimeframe(event.target.value);
       await refreshSignals(event.target.value, strength, buysell);
     },
-    [timeframe, strength, buysell, symbol]
+    [timeframe, strength, buysell]
   );
 
   const onChangeStrength = useCallback(
@@ -30,7 +29,7 @@ export const Controls = ({ refreshSignals }: ControlsProps) => {
       setStrength(event.target.value);
       await refreshSignals(timeframe, event.target.value, buysell);
     },
-    [timeframe, strength, buysell, symbol]
+    [timeframe, strength, buysell]
   );
 
   const onChangeBuySell = useCallback(
@@ -38,12 +37,12 @@ export const Controls = ({ refreshSignals }: ControlsProps) => {
       setBuySell(event.target.value);
       await refreshSignals(timeframe, strength, event.target.value);
     },
-    [timeframe, strength, buysell, symbol]
+    [timeframe, strength, buysell]
   );
 
   const onRefreshSignals = useCallback(async () => {
     await refreshSignals(timeframe, strength, buysell);
-  }, [timeframe, strength, buysell, symbol]);
+  }, [timeframe, strength, buysell]);
 
   return (
     <div className="controls">

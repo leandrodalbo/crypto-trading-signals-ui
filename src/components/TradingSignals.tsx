@@ -1,4 +1,5 @@
 import "./tradingsignals.css";
+
 import { FaXTwitter } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
@@ -75,15 +76,25 @@ const TradingSignals = ({ signalsService }: TradingSignalsProps) => {
           <a href="#contact">JungleLogic Labs</a>
         </div>
         <div className="container footersocials">
-          <a key={"twiter"} href={""} target="_blank" rel="noopener noreferrer">
+          <a
+            key={"twiter"}
+            href={"https://x.com/JunglelogicLab"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaXTwitter />
           </a>
-          <a key={"github"} href={""} target="_blank" rel="noopener noreferrer">
+          <a
+            key={"github"}
+            href={"https://github.com/leandrodalbo"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaGithub />
           </a>
           <a
             key={"linkedin"}
-            href={""}
+            href={"https://www.linkedin.com/in/leandrodlb/"}
             target="_blank"
             rel="noopener noreferrer"
           >
