@@ -72,8 +72,14 @@ const TradingSignals = ({ signalsService }: TradingSignalsProps) => {
         </table>
       </main>
       <footer className="botom" data-testid="footer">
-        <div className="contact contactcontainer">
-          <a href="#contact">JungleLogic Labs</a>
+        <div className="contact">
+          <a
+            href="https://jungle-logic.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            JungleLogic Lab
+          </a>
         </div>
         <div className="container footersocials">
           <a

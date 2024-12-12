@@ -47,7 +47,7 @@ export const Controls = ({ refreshSignals }: ControlsProps) => {
   return (
     <div className="controls">
       <div className="control">
-        <p>Crypto Trading Signals</p>
+        <p>Crypto Signal Zone</p>
       </div>
 
       <div className="control">
