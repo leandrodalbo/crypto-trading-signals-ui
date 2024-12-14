@@ -2,12 +2,16 @@ name: Publish
 on:
   push:
     branches:
-      - main
-
+      - "main"
 jobs:
   build:
     name: Build
     runs-on: ubuntu-22.04
+    env:
+      DEPLOY_DESTINATION: ${{ secrets.DEPLOY_DESTINATION }}
+      DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+      SSHKEY: ${{ secrets.SSHKEY }}
+      SSH_AUTH_SOCK: /tmp/ssh_agent.sock
     strategy:
       matrix:
         node-version: [23.x]
@@ -30,3 +34,9 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Deploy
+        run: |
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ env.SSHKEY }}" > /dev/null
+          scp -P ${{ env.DEPLOY_PORT }} -o StrictHostKeyChecking=no -r dist/* ${{ env.DEPLOY_DESTINATION }} > /dev/null
