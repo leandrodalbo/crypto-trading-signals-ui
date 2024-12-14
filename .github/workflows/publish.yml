@@ -2,7 +2,14 @@ name: Publish
 on:
   push:
     branches:
-      - main
+      - "*"
+      - "!master"
+      - "!main"
+env:
+  DEPLOY_DESTINATION: ${{ secrets.DEPLOY_DESTINATION }}
+  DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+  SSHKEY: ${{ secrets.SSHKEY }}
+  SSHPUB: ${{ secrets.SSHPUB }}
 
 jobs:
   build:
@@ -30,3 +37,9 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Deploy
+        run: |
+          eval "$(ssh-agent -s)" > /dev/null
+          ssh-add ${{ secrets.SSHKEY }}
+          scp -P ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=no dist/* ${{ secrets.DEPLOY_DESTINATION }}
