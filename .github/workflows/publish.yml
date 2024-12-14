@@ -40,5 +40,5 @@ jobs:
       - name: Deploy
         run: |
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          ssh-add - <<< "${{ env.SSHKEY }}"
-          scp -P ${{ env.DEPLOY_PORT }} -o StrictHostKeyChecking=no dist/* ${{ env.DEPLOY_DESTINATION }}
+          ssh-add - <<< "${{ env.SSHKEY }}" > /dev/null
+          scp -P ${{ env.DEPLOY_PORT }} -o StrictHostKeyChecking=no -r dist/* ${{ env.DEPLOY_DESTINATION }}
