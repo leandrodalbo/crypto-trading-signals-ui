@@ -2,9 +2,7 @@ name: Publish
 on:
   push:
     branches:
-      - "*"
-      - "!master"
-      - "!main"
+      - "main"
 jobs:
   build:
     name: Build
@@ -41,4 +39,4 @@ jobs:
         run: |
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add - <<< "${{ env.SSHKEY }}" > /dev/null
-          scp -P ${{ env.DEPLOY_PORT }} -o StrictHostKeyChecking=no -r dist/* ${{ env.DEPLOY_DESTINATION }}
+          scp -P ${{ env.DEPLOY_PORT }} -o StrictHostKeyChecking=no -r dist/* ${{ env.DEPLOY_DESTINATION }} > /dev/null
