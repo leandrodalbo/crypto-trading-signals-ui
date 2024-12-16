@@ -1,29 +1,57 @@
-import moment from "moment";
 import { Signal } from "../../types/types";
+import { unixToDate } from "../../utils/utils";
+import { BuySellItem } from "../buyselltem/BuySellItem";
 
 export interface RowProps {
   signal: Signal;
 }
 
-export const unixToDate = (unixtime: number) => {
-  return moment.unix(unixtime / 1000).format("DD-MM-YYYY HH:mm:ss");
-};
-
 export const Row = ({ signal }: RowProps) => {
   return (
     <tr>
       <td data-testid="symbol">{signal.symbol}</td>
+
       <td data-testid="time">{unixToDate(signal.signalTime)}</td>
-      <td data-testid="ema">{signal.ema}</td>
-      <td data-testid="sma">{signal.sma}</td>
-      <td data-testid="macd">{signal.macd}</td>
-      <td data-testid="lmacd">{signal.lindaMacd}</td>
-      <td data-testid="bb">{signal.bollingerBands}</td>
-      <td data-testid="obv">{signal.obv}</td>
-      <td data-testid="rsi">{signal.rsi}</td>
-      <td data-testid="rsid">{signal.rsiDivergence}</td>
-      <td data-testid="stch">{signal.stochastic}</td>
-      <td data-testid="engc">{signal.engulfingCandle}</td>
+
+      <td data-testid="ema">
+        <BuySellItem value={signal.ema as string} />
+      </td>
+
+      <td data-testid="sma">
+        <BuySellItem value={signal.sma as string} />
+      </td>
+
+      <td data-testid="macd">
+        <BuySellItem value={signal.macd as string} />
+      </td>
+
+      <td data-testid="lmacd">
+        <BuySellItem value={signal.lindaMacd as string} />
+      </td>
+
+      <td data-testid="bb">
+        <BuySellItem value={signal.bollingerBands as string} />
+      </td>
+
+      <td data-testid="obv">
+        <BuySellItem value={signal.obv as string} />
+      </td>
+
+      <td data-testid="rsi">
+        <BuySellItem value={signal.rsi as string} />
+      </td>
+
+      <td data-testid="rsid">
+        <BuySellItem value={signal.rsiDivergence as string} />
+      </td>
+
+      <td data-testid="stch">
+        <BuySellItem value={signal.stochastic as string} />
+      </td>
+
+      <td data-testid="engc">
+        <BuySellItem value={signal.engulfingCandle as string} />
+      </td>
     </tr>
   );
 };
