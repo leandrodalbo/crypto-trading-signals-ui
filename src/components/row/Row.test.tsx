@@ -10,18 +10,18 @@ describe("Table Row Component", () => {
 
     render(<Row signal={signal} />);
     expect(screen.getByTestId("symbol").innerHTML).toBe(signal.symbol);
-    expect(screen.getByTestId("time").innerHTML).toEqual(
+    expect(screen.getByTestId("signalTime").innerHTML).toEqual(
       unixToDate(signal.signalTime)
     );
+    expect(screen.getByTestId("bollingerBands")).toBeInTheDocument();
     expect(screen.getByTestId("ema")).toBeInTheDocument();
     expect(screen.getByTestId("sma")).toBeInTheDocument();
     expect(screen.getByTestId("macd")).toBeInTheDocument();
-    expect(screen.getByTestId("lmacd")).toBeInTheDocument();
-    expect(screen.getByTestId("bb")).toBeInTheDocument();
     expect(screen.getByTestId("obv")).toBeInTheDocument();
     expect(screen.getByTestId("rsi")).toBeInTheDocument();
-    expect(screen.getByTestId("rsid")).toBeInTheDocument();
-    expect(screen.getByTestId("stch")).toBeInTheDocument();
-    expect(screen.getByTestId("engc")).toBeInTheDocument();
+    expect(screen.getByTestId("rsiDivergence")).toBeInTheDocument();
+    expect(screen.getByTestId("stochastic")).toBeInTheDocument();
+    expect(screen.getByTestId("engulfingCandle")).toBeInTheDocument();
+    expect(screen.getByTestId("lindaMacd")).toBeInTheDocument();
   });
 });
