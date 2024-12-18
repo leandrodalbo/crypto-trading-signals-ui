@@ -6,7 +6,7 @@ import { FaLinkedin } from "react-icons/fa";
 
 import { Head } from "./head/Head";
 import { Row } from "./row/Row";
-import { Signal } from "../types/types";
+import { Signal, signalKeys } from "../types/types";
 import { useCallback, useEffect, useState } from "react";
 import { Controls } from "./controls/Controls";
 

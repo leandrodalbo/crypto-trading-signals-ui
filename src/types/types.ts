@@ -18,6 +18,25 @@ export interface Signal {
   version: number;
 }
 
+export interface DisplayedSignal {
+  key: string;
+  displayed: string;
+}
+export const signalKeys: DisplayedSignal[] = [
+  { key: "symbol", displayed: "SYMBOL" },
+  { key: "signalTime", displayed: "TIME" },
+  { key: "engulfingCandle", displayed: "ENGULFING CANDLE" },
+  { key: "ema", displayed: "EMA" },
+  { key: "sma", displayed: "SMA" },
+  { key: "macd", displayed: "MACD" },
+  { key: "lindaMacd", displayed: "LINDA MACD" },
+  { key: "obv", displayed: "OBV" },
+  { key: "rsi", displayed: "RSI" },
+  { key: "rsiDivergence", displayed: "RSI DIVERGENCE" },
+  { key: "bollingerBands", displayed: "BOLLINGER BANDS" },
+  { key: "stochastic", displayed: "STOCHASTIC" },
+];
+
 export enum BuySell {
   BUY,
   SELL,
