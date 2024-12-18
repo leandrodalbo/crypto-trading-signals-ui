@@ -6,52 +6,44 @@ export interface RowProps {
   signal: Signal;
 }
 
+const lockedFields = new Set<string>([
+  "buyStrength",
+  "sellStrength",
+  "turtleSignal",
+  "hammerAndShootingCandle",
+  "version",
+]);
+
 export const Row = ({ signal }: RowProps) => {
   return (
     <tr>
-      <td data-testid="symbol">{signal.symbol}</td>
+      {Object.entries(signal).map(([key, value]) => {
+        if (lockedFields.has(key)) {
+          return;
+        }
 
-      <td data-testid="time">{unixToDate(signal.signalTime)}</td>
+        if ("symbol" === key) {
+          return (
+            <td key={key} data-testid="symbol">
+              {value}
+            </td>
+          );
+        }
 
-      <td data-testid="ema">
-        <BuySellItem value={signal.ema as string} />
-      </td>
+        if ("signalTime" === key) {
+          return (
+            <td key={key} data-testid="signalTime">
+              {unixToDate(value)}
+            </td>
+          );
+        }
 
-      <td data-testid="sma">
-        <BuySellItem value={signal.sma as string} />
-      </td>
-
-      <td data-testid="macd">
-        <BuySellItem value={signal.macd as string} />
-      </td>
-
-      <td data-testid="lmacd">
-        <BuySellItem value={signal.lindaMacd as string} />
-      </td>
-
-      <td data-testid="bb">
-        <BuySellItem value={signal.bollingerBands as string} />
-      </td>
-
-      <td data-testid="obv">
-        <BuySellItem value={signal.obv as string} />
-      </td>
-
-      <td data-testid="rsi">
-        <BuySellItem value={signal.rsi as string} />
-      </td>
-
-      <td data-testid="rsid">
-        <BuySellItem value={signal.rsiDivergence as string} />
-      </td>
-
-      <td data-testid="stch">
-        <BuySellItem value={signal.stochastic as string} />
-      </td>
-
-      <td data-testid="engc">
-        <BuySellItem value={signal.engulfingCandle as string} />
-      </td>
+        return (
+          <td key={key} data-testid={key}>
+            <BuySellItem value={value as string} />
+          </td>
+        );
+      })}
     </tr>
   );
 };
