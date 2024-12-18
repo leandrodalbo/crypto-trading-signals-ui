@@ -1,3 +1,4 @@
+import { signalKeys } from "../../types/types";
 import "./head.css";
 import { FaSort } from "react-icons/fa";
 
@@ -9,22 +10,25 @@ export interface HeadProps {
 export const Head = ({ sortByDate, sortBySymbol }: HeadProps) => {
   return (
     <tr>
-      <th className="withsort" onClick={sortBySymbol}>
-        SYMBOL <FaSort data-testid="symbolsort" />
-      </th>
-      <th className="withsort" onClick={sortByDate}>
-        TIME <FaSort data-testid="datesort" />
-      </th>
-      <th>EMA</th>
-      <th>SMA</th>
-      <th>MACD</th>
-      <th>LINDA MACD</th>
-      <th>BOLLINGER BANDS</th>
-      <th>OBV</th>
-      <th>RSI</th>
-      <th>RSI DIVERGENCE</th>
-      <th>STOCHASTIC</th>
-      <th>ENGULFING CANDLE</th>
+      {signalKeys.map((it) => {
+        if ("symbol" === it.key) {
+          return (
+            <th key={it.key} className="withsort" onClick={sortBySymbol}>
+              SYMBOL <FaSort data-testid="symbolsort" />
+            </th>
+          );
+        }
+
+        if ("signalTime" === it.key) {
+          return (
+            <th key={it.key} className="withsort" onClick={sortByDate}>
+              TIME <FaSort data-testid="datesort" />
+            </th>
+          );
+        }
+
+        return <th key={it.key}>{it.displayed}</th>;
+      })}
     </tr>
   );
 };
