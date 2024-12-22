@@ -1,3 +1,4 @@
+import "./row.css"
 import { Signal, signalKeys } from "../../types/types";
 import { unixToDate } from "../../utils/utils";
 import { BuySellItem } from "../buyselltem/BuySellItem";

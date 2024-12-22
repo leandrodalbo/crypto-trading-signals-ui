@@ -4,35 +4,30 @@ table {
   font-size: 0.9em;
   font-family: sans-serif;
   min-width: 400px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 20px var(--highlight);
 }
 
 thead tr {
-  background-color: #009879;
-  color: #ffffff;
+  background-color: var(--color-secondary);
+  color: var(--secondary-text);
   text-align: left;
+  font-size: smaller;
 }
 
 table th,
 table td {
-  padding: 12px 15px;
+  padding: 11px 15px;
 }
 
-table tbody tr {
-  border-bottom: 1px solid #dddddd;
-}
-
-table tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
-}
-
-table tbody tr:last-of-type {
-  border-bottom: 2px solid #009879;
+table tbody tr {  
+  border-bottom: 2px solid var(--highlight);
+  color: var(--primary-text);
 }
 
 table tbody tr:hover {
   font-weight: bold;
-  color: #009879;
+  background-color: var(--hover-bg);
+  color: var(--hover-text);
 }
 
 .botom {
@@ -40,7 +35,8 @@ table tbody tr:hover {
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  background: #dddddd;
+  background-color: var(--color-secondary);
+
   bottom: 0;
   width: 99%;
   position: fixed;
@@ -53,8 +49,8 @@ table tbody tr:hover {
   align-items: center;
   margin-top: 3px;
   padding: 10px 10px;
-  color: #009879;
   text-decoration: none;
   font-size: 1.8rem;
   text-transform: capitalize;
+  color: var(--secondary-text);
 }
