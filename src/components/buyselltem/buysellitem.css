@@ -1,11 +1,20 @@
 .uparrow {
-  color: #19bb0e;
+  color: var(--bullish);
 }
 
 .dnarrow {
-  color: #b40606;
+  color: var(--bearish);
 }
 
 .arrows {
-  color: #0631b4;
+  color: var(--neutral);
+}
+
+.icon-wrapper {
+  display: inline-flex;
+  justify-content: right;
+  align-items: center;
+  width: 2rem; 
+  height: 2rem;
+  font-size: 1.8rem;
 }

@@ -2,34 +2,49 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #009879;
-  background: #dddddd;
+  color: var(--second-control-text) ;
+  background: var(--second-control-bg);
   text-align: left;
 }
 
 .control {
   display: flex;
-  gap: 0.9rem;
+  gap: 0.8rem;
   justify-content: space-between;
   padding: 1rem 1.5rem;
   align-items: center;
+  text-transform: uppercase;
 }
 
 .control label select button {
   margin: 1rem 0.1rem;
-  padding: 1.2rem 0.3rem;
-  text-transform: capitalize;
+  padding: 1.1rem 0.2rem;
   text-decoration: solid;
 }
 
 .control input,
 select {
   border: 0;
-  background: #05eebf;
+  color: var(--control-text);
+  background: var(--color-secondary);
+  border-bottom: 1px solid var(--highlight);
 }
 
 .control button {
-  background-color: transparent;
+   color: var(--highlight);
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  background: var(--control-bg);
+  padding: 0.1rem 1.3rem;
+  border: 1px solid var(--control-text);
+  letter-spacing: 0.1rem;
+  border-radius: 0.5rem;
+}
+
+.control button:hover{
+  background-color:var(--hover-bg);
+  color: var(--hover-text);
+  border-color: var(--highlight);
 }
 
 .control p {

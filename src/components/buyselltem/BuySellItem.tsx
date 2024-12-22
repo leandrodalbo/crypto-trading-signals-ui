@@ -9,7 +9,7 @@ export interface BuySellItemProps {
 
 export const BuySellItem = ({ value }: BuySellItemProps) => {
   return (
-    <span>
+    <span className="icon-wrapper">
       {value === "BUY" && (
         <FaArrowTrendUp className="uparrow" data-testid="arrowup" />
       )}

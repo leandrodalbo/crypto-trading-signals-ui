@@ -7,3 +7,31 @@
   text-decoration: none;
   box-sizing: border-box;
 }
+
+:root {
+
+  --color-primary:#121212;
+  --color-secondary:#1E1E1E;
+    
+  --primary-text:  #E0E0E0;
+  --secondary-text:  #A3A3A3 ;
+
+  --highlight : #FF8C00;
+  --bullish : #4CAF50;
+  --bearish : #FF5252;
+  --neutral: #42A5F5;
+
+  --control-bg: #FF8C00;
+  --control-text: #FFFFFF;
+
+  --second-control-bg: #1E1E1E;
+  --second-control-text: #FF8C00;
+
+  --hover-bg: #1A1A1A;
+  --hover-text: #FFFFFF;
+}
+
+body {
+  background: var(--color-primary);
+}
+
