@@ -8,7 +8,7 @@ export interface MainGridProps {
 const MainGrid = ({data} : MainGridProps) => {
     return (
         <div className="overflow-x-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
                 {
                 data.map(it => <SignalCard key={
                         it.symbol
