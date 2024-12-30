@@ -29,7 +29,7 @@ const TradingSignals = ({ signalsService }: TradingSignalsProps) => {
         refreshSignals();
     }, []);
 
-    const signalsByDate = () => rows.sort((a, b) => a.signalTime - b.signalTime)
+    const signalsByDate = () => rows.sort((a, b) => b.signalTime - a.signalTime)
 
     return (
         <>
