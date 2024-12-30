@@ -26,7 +26,7 @@ export const SignalDetail = () => {
 
                 <div data-testid="indicators" className="mt-8">
                     <h3 className="text-[var(--highlight)] text-xl font-semibold text-primary-text mb-4">Indicators</h3>
-                    <div data-testid="indicators-grid" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div data-testid="indicators-grid" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                         {Object.entries(signal).map(([key, value]) => {
                             if (isDisplayable(key)) {
                                 return (
