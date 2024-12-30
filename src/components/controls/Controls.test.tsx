@@ -2,12 +2,13 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { vi } from "vitest";
 import { Controls } from "./Controls";
 import { BuySell, Strength, TimeFrame } from "../../types/types";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Controls", () => {
   it("should apply Timeframe select option", () => {
     const refreshSignals = vi.fn();
 
-    render(<Controls refreshSignals={refreshSignals} />);
+    render(<BrowserRouter><Controls refreshSignals={refreshSignals} /></BrowserRouter>);
 
     const timeframe = screen.getByTestId<HTMLSelectElement>("timeframe");
 
@@ -21,7 +22,7 @@ describe("Controls", () => {
   it("should apply Strength select option", () => {
     const refreshSignals = vi.fn();
 
-    render(<Controls refreshSignals={refreshSignals} />);
+    render(<BrowserRouter><Controls refreshSignals={refreshSignals} /></BrowserRouter>);
 
     const strength = screen.getByTestId<HTMLSelectElement>("strength");
 
@@ -35,7 +36,7 @@ describe("Controls", () => {
   it("should apply BuySell select option", () => {
     const refreshSignals = vi.fn();
 
-    render(<Controls refreshSignals={refreshSignals} />);
+    render(<BrowserRouter><Controls refreshSignals={refreshSignals} /></BrowserRouter>);
 
     const buysell = screen.getByTestId<HTMLSelectElement>("buysell");
 
@@ -49,7 +50,7 @@ describe("Controls", () => {
   it("should refresh signals", () => {
     const refreshSignals = vi.fn();
 
-    render(<Controls refreshSignals={refreshSignals} />);
+    render(<BrowserRouter><Controls refreshSignals={refreshSignals} /></BrowserRouter>);
 
     const refresh = screen.getByRole("button");
 
