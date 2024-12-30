@@ -1,0 +1,24 @@
+
+.botom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--color-secondary);
+  bottom: 0;
+  width: 100%;
+  position: fixed;
+}
+
+.botom a {
+  float: right;
+  display: block;
+  text-align: center;
+  align-items: center;
+  margin-top: 3px;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 1.8rem;
+  text-transform: capitalize;
+  color: var(--secondary-text);
+}

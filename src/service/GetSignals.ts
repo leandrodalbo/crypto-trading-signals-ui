@@ -21,8 +21,7 @@ class GetSignalsService {
     strength?: string,
     buysell?: string
   ): Promise<AxiosResponse> {
-    return Promise.resolve({data:testdata} as AxiosResponse)
-    //this.axiosClient.get(this.buildPath(timeframe, strength, buysell));
+    return this.axiosClient.get(this.buildPath(timeframe, strength, buysell));
   }
 
   private buildPath(

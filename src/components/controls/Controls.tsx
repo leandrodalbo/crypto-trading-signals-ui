@@ -2,6 +2,7 @@ import "./controls.css";
 
 import { useCallback, useState } from "react";
 import { BuySell, Strength, TimeFrame } from "../../types/types";
+import { Link } from "react-router-dom";
 
 export interface ControlsProps {
   refreshSignals: (
@@ -47,7 +48,7 @@ export const Controls = ({ refreshSignals }: ControlsProps) => {
   return (
     <div className="controls">
       <div className="control">
-        <p>Crypto Signal Zone</p>
+        <Link to={"/"}><p>Crypto Signal Zone</p></Link>
       </div>
 
       <div className="control">
