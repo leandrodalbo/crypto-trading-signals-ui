@@ -1,6 +1,7 @@
 import { AxiosInstance, AxiosResponse } from "axios";
 
 import { BuySell, Strength, TimeFrame } from "./../types/types";
+import { testdata } from "../../tests/data/testdata";
 
 enum TimeFramePath {
   H1 = "onehour",
@@ -20,7 +21,8 @@ class GetSignalsService {
     strength?: string,
     buysell?: string
   ): Promise<AxiosResponse> {
-    return this.axiosClient.get(this.buildPath(timeframe, strength, buysell));
+    return Promise.resolve({data:testdata} as AxiosResponse)
+    //this.axiosClient.get(this.buildPath(timeframe, strength, buysell));
   }
 
   private buildPath(
