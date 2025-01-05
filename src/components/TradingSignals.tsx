@@ -36,12 +36,12 @@ const TradingSignals = ({ signalsService }: TradingSignalsProps) => {
             <header data-testid="header">
                 <Controls refreshSignals={refreshSignals} />
             </header>
-            <div className="min-h-screen bg-[var(--color-primary)] flex items-center justify-center" data-testid="main">
+            <main className="min-h-screen bg-[var(--color-primary)] flex items-center justify-center" data-testid="main">
                 <Routes>
                     <Route path="/" element={<MainGrid data={signalsByDate()} />} />
                     <Route path="/signal/:symbol" element={<SignalDetail />} />
                 </Routes>
-            </div>
+            </main>
             <Footer data-testid="footer" />
         </>
     );
