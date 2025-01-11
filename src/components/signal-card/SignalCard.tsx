@@ -15,7 +15,7 @@ const SignalCard = ({ data }: SignalCardProps) => {
                     data.symbol
                 } </h2>
             <p data-testid="cardtime" className="text-lg mb-2">
-                <strong className="text-[var(--secondary-text)]">Time:</strong>
+                <strong className="text-[var(--secondary-text)]">Time</strong>
                 {" "}
                 {
                     unixToDate(data.signalTime)

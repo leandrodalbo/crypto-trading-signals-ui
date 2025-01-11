@@ -11,14 +11,13 @@ describe("Signals Details", () => {
 
     render(<MemoryRouter initialEntries={[{ pathname: `/signal`, state: { signal } }]}><SignalDetail /></MemoryRouter>);
     expect(screen.getByTestId("symbol-detail")).toBeInTheDocument();
+    expect(screen.getByTestId("backward-link")).toBeInTheDocument();
     expect(screen.getByTestId("time-detail")).toBeInTheDocument();
     expect(screen.getByTestId("indicators")).toBeInTheDocument();
   });
 
   it("will render all the indicators", () => {
-
     render(<MemoryRouter initialEntries={[{ pathname: `/signal`, state: { signal } }]}><SignalDetail /></MemoryRouter>);
     expect(screen.getByTestId("indicators-grid")).toBeInTheDocument();
-
   });
 });

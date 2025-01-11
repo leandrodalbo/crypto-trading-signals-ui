@@ -2,6 +2,9 @@ import { useLocation } from "react-router-dom";
 import { Signal } from "../../types/types";
 import { BuySellItem } from "../buyselltem/BuySellItem";
 import { unixToDate } from "../../utils/utils";
+import { Link } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
+
 
 export const SignalDetail = () => {
     const location = useLocation();
@@ -13,8 +16,12 @@ export const SignalDetail = () => {
         <div className="min-h-screen text-primary-text p-8">
 
             <div className="bg-[var(--color-secondary)] p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
-                <h2 data-testid="symbol-detail" className="text-[var(--highlight)] text-3xl font-semibold mb-4">{signal.symbol} Signal Details</h2>
-
+                <div className="flex justify-between items-center">
+                    <h2 data-testid="symbol-detail" className="text-[var(--highlight)] text-3xl font-semibold mb-4">{signal.symbol} Signal Details</h2>
+                    <Link data-testid="backward-link" to="/">
+                        <IoMdArrowRoundBack className="text-[var(--primary-text)] text-2xl hover:text-opacity-80 cursor-pointer" />
+                    </Link>
+                </div>
                 <div data-testid="time-detail" className="grid grid-cols-1 md:grid-cols-1 gap-4  ">
                     <div>
                         <h3 className="text-[var(--highlight)] text-lg font-semibold text-primary-text">Signal Time</h3>
