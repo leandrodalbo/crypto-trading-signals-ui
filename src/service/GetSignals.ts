@@ -1,5 +1,4 @@
 import { AxiosInstance, AxiosResponse } from "axios";
-
 import { BuySell, Strength, TimeFrame } from "./../types/types";
 
 enum TimeFramePath {
