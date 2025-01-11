@@ -20,28 +20,35 @@ class GetSignalsService {
     strength?: string,
     buysell?: string
   ): Promise<AxiosResponse> {
-    return this.axiosClient.get(this.buildPath(timeframe, strength, buysell));
+    return this.axiosClient.get(this.reqUrl(timeframe, strength, buysell));
   }
 
-  private buildPath(
+  private reqUrl(
     timeframe?: string,
     strength?: string,
     buysell?: string
   ): string {
-    if (TimeFrame[TimeFrame.D1] === timeframe)
-      return `/signals/${TimeFramePath.D1}?signal=${
-        buysell ? buysell : BuySell[BuySell.BUY]
+    return `${this.buildPath(timeframe)}?signal=${buysell ? buysell : BuySell[BuySell.BUY]
       }&strength=${strength ? strength : Strength[Strength.MEDIUM]}`;
-
-    if (TimeFrame[TimeFrame.H4] === timeframe)
-      return `/signals/${TimeFramePath.H4}?signal=${
-        buysell ? buysell : BuySell[BuySell.BUY]
-      }&strength=${strength ? strength : Strength[Strength.MEDIUM]}`;
-
-    return `/signals/${TimeFramePath.H1}?signal=${
-      buysell ? buysell : BuySell[BuySell.BUY]
-    }&strength=${strength ? strength : Strength[Strength.MEDIUM]}`;
   }
+
+  private buildPath(
+    timeframe?: string,
+  ): string {
+    return `/signals/${timeframe ? this.getTimeFramePath(timeframe) : TimeFramePath.D1}`;
+  }
+
+  private getTimeFramePath(timeframe: string): string {
+    switch (timeframe) {
+      case TimeFrame[TimeFrame.H1]:
+        return TimeFramePath.H1;
+      case TimeFrame[TimeFrame.H4]:
+        return TimeFramePath.H4;
+      default:
+        return TimeFramePath.D1;
+    }
+  }
+
 }
 
 export default GetSignalsService;
