@@ -30,23 +30,6 @@ select {
   border-bottom: 1px solid var(--highlight);
 }
 
-.control button {
-   color: var(--highlight);
-  text-transform: uppercase;
-  color: var(--color-secondary);
-  background: var(--control-bg);
-  padding: 0.1rem 1.3rem;
-  border: 1px solid var(--control-text);
-  letter-spacing: 0.1rem;
-  border-radius: 0.5rem;
-}
-
-.control button:hover{
-  background-color:var(--hover-bg);
-  color: var(--hover-text);
-  border-color: var(--highlight);
-}
-
 .control p {
   font-size: 1.5rem;
   text-transform: capitalize;

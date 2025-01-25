@@ -47,15 +47,4 @@ describe("Controls", () => {
     expect(buysell.value).toBe(BuySell[BuySell.BUY]);
   });
 
-  it("should refresh signals", () => {
-    const refreshSignals = vi.fn();
-
-    render(<BrowserRouter><Controls refreshSignals={refreshSignals} /></BrowserRouter>);
-
-    const refresh = screen.getByRole("button");
-
-    fireEvent.click(refresh);
-
-    expect(refreshSignals).toHaveBeenCalled();
-  });
 });
