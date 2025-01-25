@@ -41,10 +41,6 @@ export const Controls = ({ refreshSignals }: ControlsProps) => {
     [timeframe, strength, buysell]
   );
 
-  const onRefreshSignals = useCallback(async () => {
-    await refreshSignals(timeframe, strength, buysell);
-  }, [timeframe, strength, buysell]);
-
   return (
     <div className="controls">
       <div className="control">
@@ -108,7 +104,6 @@ export const Controls = ({ refreshSignals }: ControlsProps) => {
           </option>
         </select>
 
-        <button onClick={onRefreshSignals}>Refresh</button>
       </div>
     </div>
   );
